@@ -1,0 +1,15 @@
+current directory: /home/dawid/aplikacje_mobilne/dowozy/vendor/bundle/ruby/3.0.0/gems/stringio-3.1.0/ext/stringio
+/home/dawid/.asdf/installs/ruby/3.0.0/bin/ruby -I /home/dawid/.asdf/installs/ruby/3.0.0/lib/ruby/3.0.0 -r ./siteconf20240127-8600-mpf8fa.rb extconf.rb
+creating Makefile
+
+current directory: /home/dawid/aplikacje_mobilne/dowozy/vendor/bundle/ruby/3.0.0/gems/stringio-3.1.0/ext/stringio
+make "DESTDIR=" clean
+
+current directory: /home/dawid/aplikacje_mobilne/dowozy/vendor/bundle/ruby/3.0.0/gems/stringio-3.1.0/ext/stringio
+make "DESTDIR="
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/dawid/aplikacje_mobilne/dowozy/vendor/bundle/ruby/3.0.0/gems/stringio-3.1.0/ext/stringio
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20240127-8600-z6topw
