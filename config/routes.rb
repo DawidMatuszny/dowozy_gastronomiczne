@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  root 'home#index'
+  #get 'sessions/new'
+  get 'users/new'
+  get 'home/about'
   get 'sessions/new'
 
   get     '/login',   to: 'sessions#new'
   post    '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  get  '/logout',  to: 'sessions#destroy'
 
   resources :products
   resources :order_items

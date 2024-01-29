@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/products/index.html.erb -->
+<h1>Lista Produktów</h1>
 
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New product", new_product_path %>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nazwa</th>
+      <th>Cena</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= sprintf('%.2f zł', product.price) %></td>
+        <td>
+          <% if logged_in2? %>
+          <%= link_to 'Podgląd', product_path(product) %>
+          <%= link_to 'Edycja', edit_product_path(product) %>
+          <%= link_to 'Usunięcie', product_path(product), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć ten produkt?' } %>
+          <% else %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
