@@ -1,10 +1,28 @@
 <p style="color: green"><%= notice %></p>
-
+<h2>Twoje dane</h2>
 <%= render @user %>
+<br/>
+<br/>
+<h2>Twoje adresy dostawy</h2>
+<% if @delivery_addresses.any? %>
+  <ul>
+    <% @delivery_addresses.each do |address| %>
+      <li>
+        <%= address.address %>
+        <%= link_to "Edytuj", edit_delivery_address_path(address), class:"btn btn-dark btn-sm" %> 
+        <%= link_to "Usuń", address, method: :delete, class:"btn btn-danger btn-sm" %> 
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Nie znaleziono adresów.</p>
+<% end %>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= link_to "Edytuj dane", edit_user_path(@user), class:"btn btn-dark" %>
+  <%= link_to "Dodaj adres", new_delivery_address_path, class:"btn btn-dark" %>
+<br/>
+<br/>
+<br/>
+  <%= button_to "Usuń konto", @user, method: :delete, class:"btn btn-danger" %>
 </div>

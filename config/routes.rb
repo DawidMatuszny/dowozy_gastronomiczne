@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   resources :products
   resources :order_items
+  get 'create_order', to: 'order_items#create_order'
+  get 'shopping_cart', to: 'order_items#shopping_cart'
+  get 'complete_purchase', to: 'orders#complete_purchase'
+  get '/search_products', to: 'products#search', as: 'search_products'
+
   resources :restaurant_staffs
   resources :delivery_addresses
   resources :orders

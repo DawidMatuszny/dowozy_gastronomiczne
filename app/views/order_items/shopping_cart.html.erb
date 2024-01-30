@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h1 class="display-4"> Twój Koszyk </h1>
+  <hr class="my-4">
+  <p>
+    <% if @order_items.present? %>
+  <ul>
+    <% total_price = 0 %>
+    <% @order_items.each do |item| %>
+      <li>
+        <%= item.product.name %>
+         <%= sprintf('%.2f zł', item.product.price)%>
+      </li>
+
+      <% total_price += item.product.price * item.quantity %>
+    <% end %>
+  </ul>
+  <p>Suma wszystkich produktów: <%= sprintf('%.2f zł', total_price) %> </p>
+  <p>Koszty dostawy: 10.00zł</p>
+  <p>Łączna kwota do zapłaty: <%= sprintf('%.2f zł', total_price + 10) %> </p>
+  <%= link_to "Kupuje", complete_purchase_path(@order), class: "btn btn-primary" %>
+<% else %>
+  <p>Twój koszyk jest pusty.</p>
+<% end %>
+<%= link_to "Kontynuuj zakupy", products_path, class: "btn btn-primary" %>
+  </p>
+</div>
+</div>
+
+
+
+

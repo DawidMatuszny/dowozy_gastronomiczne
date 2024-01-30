@@ -1,11 +1,12 @@
 <h1>Logowanie</h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :username %>
+  <%= f.label :Login %>
   <%= f.text_field :username, class: 'form-control' %>
 
-  <%= f.label :password %>
+  <%= f.label :Hasło %>
   <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.submit "Zaloguj" %>
+<br/>
+  <%= f.submit "Zaloguj", class:"btn btn-dark"%>
 <% end %>

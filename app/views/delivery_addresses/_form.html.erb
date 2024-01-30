@@ -12,8 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+    <% form.label :user_id, style: "display: block" %>
+    <% form.number_field :user_id %>
   </div>
 
   <div>
@@ -21,7 +21,8 @@
     <%= form.text_field :address %>
   </div>
 
+<br/>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Akceptuj", class:"btn btn-dark"%>
   </div>
 <% end %>

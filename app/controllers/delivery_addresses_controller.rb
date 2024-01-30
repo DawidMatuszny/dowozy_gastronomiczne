@@ -22,10 +22,11 @@ class DeliveryAddressesController < ApplicationController
   # POST /delivery_addresses or /delivery_addresses.json
   def create
     @delivery_address = DeliveryAddress.new(delivery_address_params)
+    @delivery_address.user_id = current_user.id
 
     respond_to do |format|
       if @delivery_address.save
-        format.html { redirect_to delivery_address_url(@delivery_address), notice: "Delivery address was successfully created." }
+        format.html { redirect_to current_user, notice: "Delivery address was successfully created." }
         format.json { render :show, status: :created, location: @delivery_address }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class DeliveryAddressesController < ApplicationController
   def update
     respond_to do |format|
       if @delivery_address.update(delivery_address_params)
-        format.html { redirect_to delivery_address_url(@delivery_address), notice: "Delivery address was successfully updated." }
+        format.html { redirect_to current_user, notice: "Delivery address was successfully updated." }
         format.json { render :show, status: :ok, location: @delivery_address }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class DeliveryAddressesController < ApplicationController
     @delivery_address.destroy!
 
     respond_to do |format|
-      format.html { redirect_to delivery_addresses_url, notice: "Delivery address was successfully destroyed." }
+      format.html { redirect_to current_user, notice: "Delivery address was successfully destroyed." }
       format.json { head :no_content }
     end
   end

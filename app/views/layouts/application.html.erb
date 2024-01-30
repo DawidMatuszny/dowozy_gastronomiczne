@@ -18,13 +18,6 @@
   </head>
   <body>
     <%= render 'home/header' %>
-    <% if logged_in? || logged_in2? %>
-      Zalogowany jako <%= current_user.username %>
-    <%= link_to "Profil", current_user %>
-    <%= button_to "Wyloguj", logout_path, method: :delete %>
-    <% else %>
-      <%= link_to "Zaloguj", login_path %>
-    <% end %>
     <div class="container">
       <br/>
       <%= yield %>

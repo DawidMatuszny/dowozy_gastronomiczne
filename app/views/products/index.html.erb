@@ -1,6 +1,4 @@
-<!-- app/views/products/index.html.erb -->
 <h1>Lista Produktów</h1>
-
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
@@ -16,13 +14,23 @@
         <td><%= sprintf('%.2f zł', product.price) %></td>
         <td>
           <% if logged_in2? %>
-          <%= link_to 'Podgląd', product_path(product) %>
-          <%= link_to 'Edycja', edit_product_path(product) %>
-          <%= link_to 'Usunięcie', product_path(product), method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć ten produkt?' } %>
+          <div class="row">
+            <div class="col">
+              <%= button_to 'Podgląd', product_path(product), method: :get, class: "btn btn-dark btn-sm" %>
+            </div>
+            <div class="col">
+              <%= button_to 'Edycja', edit_product_path(product), method: :get, class: "btn btn-dark btn-sm" %>
+            </div>
+          </div>
           <% else %>
+            <%= button_to 'Podgląd', product_path(product), method: :get, class:"btn btn-dark" %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% if logged_in2? %>
+  <%= link_to 'Dodaj nowy produkt', new_product_path, class:"btn btn-dark" %>
+<% end %>

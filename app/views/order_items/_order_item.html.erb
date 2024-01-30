@@ -1,5 +1,10 @@
 <div id="<%= dom_id order_item %>">
   <p>
+    <strong>Order:</strong>
+    <%= order_item.order_id %>
+  </p>
+
+  <p>
     <strong>Product:</strong>
     <%= order_item.product_id %>
   </p>
@@ -9,4 +14,8 @@
     <%= order_item.quantity %>
   </p>
 
+  <p>
+    <strong>ID:</strong>
+    <%= order_item.id %>
+  </p>
 </div>

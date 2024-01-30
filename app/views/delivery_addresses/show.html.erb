@@ -3,8 +3,5 @@
 <%= render @delivery_address %>
 
 <div>
-  <%= link_to "Edit this delivery address", edit_delivery_address_path(@delivery_address) %> |
-  <%= link_to "Back to delivery addresses", delivery_addresses_path %>
-
-  <%= button_to "Destroy this delivery address", @delivery_address, method: :delete %>
+  <%= button_to "Usuń", @delivery_address, method: :delete, class:"btn btn-danger"%>
 </div>

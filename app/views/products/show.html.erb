@@ -2,9 +2,14 @@
 
 <%= render @product %>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
-</div>
+<% if logged_in2? %>
+  <div>
+    <%= link_to "Edytuj produkt", edit_product_path(@product), class:"btn btn-dark" %> 
+    <%= link_to "Cofnij do listy produktów", products_path, class:"btn btn-dark" %>
+    <br/>
+    <br/>
+    <%= button_to "Usuń produkt", @product, method: :delete, class:"btn btn-danger" %>
+  </div>
+<% else %>
+  <%= link_to "Cofnij do listy produktów", products_path, class:"btn btn-dark" %>
+<% end %>

@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i[ show edit update destroy ]
+  #before_action :require_login   
 
   # GET /order_items or /order_items.json
   def index
@@ -34,6 +35,29 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def shopping_cart
+    if current_user && current_user.orders.in_progress.first
+      @order = current_user.orders.in_progress.first
+      @order_items = @order.order_items if @order
+    end
+  end
+
+
+  def create_order
+      dwa = params[:dwa].to_i
+      trzy = params[:trzy].to_i
+      if !current_user.orders.in_progress.first
+          @order = current_user.orders.create(user_id: current_user.id, order_date: Time.current,  status: 1) 
+      end
+        jed = current_user.orders.in_progress.first.id
+        @order_item = OrderItem.create(order_id: jed, product_id: dwa, quantity: trzy)
+        @order_item.save
+         respond_to do |format|
+        format.html { redirect_to shopping_cart_path, notice: "Order item was successfully created." }
+        format.json { render json: @order_item, status: :created }
+      end
+    end
+
   # PATCH/PUT /order_items/1 or /order_items/1.json
   def update
     respond_to do |format|
@@ -65,6 +89,16 @@ class OrderItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_item_params
-      params.require(:order_item).permit(:product_id, :quantity)
+      params.require(:order_item).permit(:order_id, :product_id, :quantity)
     end
 end
+
+
+  private
+
+  def require_login
+    unless logged_in2?
+      redirect_to root_path 
+    end
+  end
+

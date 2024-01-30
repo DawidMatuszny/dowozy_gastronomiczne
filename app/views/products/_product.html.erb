@@ -1,17 +1,12 @@
 <div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
 
-  <p>
-    <strong>Category:</strong>
-    <%= product.category %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= sprintf('%.2f zł', product.price) %>
-  </p>
-
+  
+  <div class="jumbotron">
+  <h1 class="display-4"><%= product.name %></h1>
+  <hr class="my-4">
+  <p><%= product.category %> |  <%= sprintf('%.2f zł', product.price) %></p>
+  <% if logged_in? %>
+    <%= link_to "Zamów", create_order_path( dwa: product.id , trzy: 1), method: :post, class: "btn btn-primary" %>
+  <% end %>
+</div>
 </div>

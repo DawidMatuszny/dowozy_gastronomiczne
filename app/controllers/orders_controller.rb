@@ -19,6 +19,17 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def complete_purchase
+    @order = current_user.orders.in_progress.first
+    if @order.present?
+      @order.update(status: 2)
+      flash[:success] = "Zamówienie zostało złożone."
+    else
+      flash[:error] = "Brak aktywnego zamówienia do złożenia."
+    end
+    redirect_to root_path
+  end
+
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
